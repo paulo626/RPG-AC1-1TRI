@@ -1,19 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>RPG</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <button onclick="posicionar()">posicionar</button>
     <div class="tudo">
         <div class="mapa">
-
+            <div class="mapaIMG">
+                <img src="imagens/ImagemSapo.png" id="Personagem" class="imagen" alt="">
+            </div>
         </div>
         <div class="dados">
-            
+            <div class="info">
+                <label for="Ataque">Ataque:</label>
+                <h2 id="Ataque">00</h2>
+
+                <label for="Defesa">Defesa:</label>
+                <h2 id="Defesa">00</h2>
+
+                <label for="PontosVida">Vida:</label>
+                <h3 id="PontosVida">00</h3>
+            </div>
+            <div class="button">
+                <button class="bootton 1">Atacar</button>
+                <button class="bootton-dia">Defender</button>
+                <div class="Armanezar">
+                    <button>Avançar</button>
+                </div>
+            </div>
+            <div class="Lorre">
+                <h3>Informações</h1>
+            </div>
+            <div class="Avancar">
+                <h1>wello</h1>
+            </div>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
