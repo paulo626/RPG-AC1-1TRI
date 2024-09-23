@@ -1,0 +1,21 @@
+body{
+    height: 100%;
+    width: 100vh;
+    background-color: rgb(31, 31, 31);
+}
+    .tudo{
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+        .mapa{
+            width: 45%;
+            height: 100%;
+            background-color: aqua;
+        }
+        .dados{
+            width: 45%;
+            height: 100%;
+            background-color: aquamarine;
+        }
