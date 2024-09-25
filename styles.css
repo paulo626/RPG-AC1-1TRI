@@ -66,9 +66,22 @@ body{
                     color: rgb(255, 255, 255);
                     background-color: rgb(0, 132, 255);
                 }
+                .Avancar{
+                    height: 68px;
+                    width: 140px;
+                    color: rgb(255, 255, 255);
+                    background-color: rgb(5, 153, 76);
+                    font-size: 22px;
+                }
             .Lorre{
-                display: grid;
-                justify-content: center;
-                grid-template-columns: 200px;
-                grid-auto-rows: 30px;
+                height: auto;
+                width: 90%;
+                margin: 5px 4% 5px 4% ;
+                border: black solid;
+                border-radius: 10px;
+                background-color:rgb(118, 118, 118);
+            }
+            .Avancare{
+                text-align: center;
+                margin-top: 15px;
             }
