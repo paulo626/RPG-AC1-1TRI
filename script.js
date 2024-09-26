@@ -27,7 +27,8 @@ function frases(Frase){
         7:'Isso já que saindo do controle você derrotou varios capamgas do salazar,por isso ele mandou um assasino de elite para te caçar',
         8:'certo não sei como esta vivo você é sertamento um garoto muito sortudo ou muito esforçado mas do inimigo nivel 8 você não passa sinto muito',
         9:'Pelas barbar do profeta você esta vivo isso é incrivel,o salazar esta com medo e preucupado ele mandou um general nivel 9 para cima de você vamos la confio em você',
-        10:'Voce chegou, o salazar te espera no salão boa sorte rapaz'
+        10:'Voce chegou, o salazar te espera no salão boa sorte rapaz',
+        A1:''
     }
     return frases[Frase]
 }
@@ -37,9 +38,7 @@ function MovimentarPersonagem(vez){
         1:[30,50],
         2:[170,50],
         3:[665,888],
-
     }
-
     Personagem.style.left = listaDePossição[vez][0] + 'px';
     Personagem.style.top = listaDePossição[vez][1] + 'px';
     
@@ -48,22 +47,35 @@ function sortearD20(){
     return Math.floor(Math.random()*20) + 1
 }
 function Briga(Personagem,NInimigo){
-    let defesa,dano,vida
+    const botaoAvancar = document.getElementById("Botaoavancar")
+    botaoAvancar.disabled = true
 
+    const Botatacar = document.getElementById('botaoAtacar')
+    const Botadefende = document.getElementById('botaoDefende')
+    let defesa,dano,vida
+    /* NInimigo = [
+    vida,   0
+    dano,   1
+    defesa  2
+    ]
+    */
+    let grhf = NInimigo
     defesa = document.getElementById('Defesa')
     dano = document.getElementById('Ataque')
     vida = document.getElementById('PontosVida')
 
-    defesa.innerText = Personagem[2]
+    defesa.innerText = `${Personagem[2]}`
     dano.innerText = Personagem[1]
     vida.innerText = Personagem[0]
+    console.log('3')
+    return 34
+
 
 }
 async function Jogar(){
     const botaoAvancar = document.getElementById("Botaoavancar")
-    botaoAvancar.addEventListener('click',() => MovimentarPersonagem(1));
-    botaoAvancar.disabled = true
-
+    // botaoAvancar.addEventListener('click',() => MovimentarPersonagem(1));
+    MovimentarPersonagem(1)
     let Personagem = [
         12,//vida
         4,//dano
@@ -71,11 +83,11 @@ async function Jogar(){
 
     let Frases = document.getElementById('info')
     Frases.innerText = frases(1)
+    console.log('1')
+    let Inimigo = inimigo(1)
 
-    let inimigo = inimigo(1)
-    Personagem = await Briga(Personagem,inimigo)
-
+    Personagem = await Briga(Personagem,Inimigo)
+    console.log('2')
 }
-Jogar()
 
 
