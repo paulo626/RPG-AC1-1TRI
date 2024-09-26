@@ -28,7 +28,7 @@ function frases(Frase){
         8:'certo não sei como esta vivo você é sertamento um garoto muito sortudo ou muito esforçado mas do inimigo nivel 8 você não passa sinto muito',
         9:'Pelas barbar do profeta você esta vivo isso é incrivel,o salazar esta com medo e preucupado ele mandou um general nivel 9 para cima de você vamos la confio em você',
         10:'Voce chegou, o salazar te espera no salão boa sorte rapaz',
-        A1:''
+        A1:'Você entrou em combate!! clique em ataque ou defesa para escolher onde usar sua abilidade '
     }
     return frases[Frase]
 }
@@ -46,10 +46,10 @@ function MovimentarPersonagem(vez){
 function sortearD20(){
     return Math.floor(Math.random()*20) + 1
 }
-function Briga(Personagem,NInimigo){
-    const botaoAvancar = document.getElementById("Botaoavancar")
-    botaoAvancar.disabled = true
-
+async function Briga(Personagem,NInimigo){
+    let combate = true
+    let vivo = true
+    let Frases = document.getElementById('info')
     const Botatacar = document.getElementById('botaoAtacar')
     const Botadefende = document.getElementById('botaoDefende')
     let defesa,dano,vida
@@ -59,23 +59,106 @@ function Briga(Personagem,NInimigo){
     defesa  2
     ]
     */
-    let grhf = NInimigo
     defesa = document.getElementById('Defesa')
     dano = document.getElementById('Ataque')
     vida = document.getElementById('PontosVida')
 
-    defesa.innerText = `${Personagem[2]}`
+    defesa.innerText =Personagem[2]
     dano.innerText = Personagem[1]
     vida.innerText = Personagem[0]
-    console.log('3')
-    return 34
 
+    Frases.innerText = frases(A1)
 
+    let VidaIni, DanoINi,DefesaIni
+    VidaIni = NInimigo[0]
+    DanoINi = NInimigo[1]
+    DefesaIni = NInimigo[2]
+
+    let Vida,Defesa,Dano
+    Defesa =Personagem[2]
+    Dano = Personagem[1]
+    Vida = Personagem[0]
+    do{
+        let oqueFazer = await new Promise(resolve => {
+            Botatacar.addEventListener('click', () => {resolve('Ataca');})
+            Botadefende.addEventListener('click', () => {resolve('defende');})
+        })
+        let DefesaTes = (sortearD20 + Defesa)+Math.floor(sortearD20/3)
+        let AtaqueTes = (sortearD20 + Dano) + Math.floor(sortearD20/3)
+
+        let AtaqueIni = (sortearD20 + DanoINi)*1.05
+
+        // atacar
+        if(oqueFazer == 'Ataca' ){
+            if(AtaqueTes >= DefesaIni){
+                VidaIni = VidaIni - Dano
+                if(VidaIni <= 0 ){
+                    Frases.innerText = 'inimigo Derrotado!!!!' 
+                    combate = false
+                }
+                else{
+                    Frases.innerText = 'Você acertou o ataque porrem inimigo continua Vivo'
+                }
+            }
+            else{ 
+                Frases.innerText = 'Você errou o ataque'
+            }
+
+            if(AtaqueIni >= DefesaTes){
+                Vida = Vida - DanoINi
+                vida.innerText = Vida
+                if(Vida <= 0){
+                    Frases.innerText = 'Voce Morreu!!!'
+                    combate = false
+                    vivo = false
+                }
+                else{
+                    Frases.innerText = ' o inimigo acertou um golpe em você !!  Você perdeu vida'
+                }
+            }
+            else{
+                Frases.innerText = `Ele errou o ataque em você`
+            }
+        }
+        // defender
+        else{
+            if(AtaqueIni >= DefesaTes){
+                Vida = Vida - DanoINi
+                vida.innerText = Vida
+                if(Vida <= 0){
+                    Frases.innerText = 'Voce Morreu!!!'
+                    combate = false
+                    vivo = false
+                }
+                else{
+                    Frases.innerText = ' o inimigo acertou um golpe em você !!  Você perdeu vida'
+                }
+            }
+            else{
+                Vida = Vida + 7
+                vida.innerText = Vida
+                Frases.innerText = `Você conseguil esquivou do ataque dele e recebeu ${7} de Vida `
+            }
+        }
+
+    }while(combate == true)
+
+return resolve(vivo)
 }
+
+
 async function Jogar(){
+    let Jogo = true
+    do{
     const botaoAvancar = document.getElementById("Botaoavancar")
-    // botaoAvancar.addEventListener('click',() => MovimentarPersonagem(1));
-    MovimentarPersonagem(1)
+
+    let buttonPressed = new Promise(resolve => {
+        botaoAvancar.addEventListener('click', () => {
+          resolve();
+        });
+      });
+    await buttonPressed;
+
     let Personagem = [
         12,//vida
         4,//dano
@@ -83,11 +166,11 @@ async function Jogar(){
 
     let Frases = document.getElementById('info')
     Frases.innerText = frases(1)
-    console.log('1')
     let Inimigo = inimigo(1)
 
-    Personagem = await Briga(Personagem,Inimigo)
-    console.log('2')
+    Personagem = await new Promise(resolve => Briga(Personagem,Inimigo))
+}while(Jogo == true)
+    
 }
-
+Jogar()
 
