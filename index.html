@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPG</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="Caregamento.css">
 </head>
+
 <body>
     <div class="tudo">
         <div class="mapa">
-            <div class="mapaIMG">
+            <div class="mapaIMG" id="MapaId">
                 <img src="imagens/ImagemSapo.png" id="Personagem" class="imagen" alt="">
             </div>
         </div>
@@ -29,7 +32,8 @@
                 <button class="bootton-dia" id="botaoDefende">Defender</button>
             </div>
             <div class="Lorre">
-                <p class="ModificadorTexto" id="info"></p>
+                <div class="importante"></div>
+                <p class="ModificadorTexto" id="info">Você é um sapo que ama Pizza mas um Salazar do mau roubou sua pizza você deve derrota-lo para recuperar sua pizza</p>
             </div>
             <div class="Avancare">
                 <button class="Avancar" id="Botaoavancar">Avançar</button>
@@ -38,4 +42,5 @@
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>
