@@ -44,6 +44,7 @@ body{
                 height: 40px;
                 grid-template-columns: 67px 25px;
                 grid-auto-rows: 53px;
+                padding: 12px;
             }
             .Armanezar{
                 grid-column-start: 1;
@@ -85,4 +86,7 @@ body{
             .Avancare{
                 text-align: center;
                 margin-top: 15px;
+            }
+            #info{
+                padding-left: 8px;
             }
