@@ -240,6 +240,7 @@ async function Jogar() {
         else{
             if(Inimigo == 10){
                 Frases.innerText = 'Você derrotou o Salazar tome a sua Pizza !!!'
+                delay(2700)
                 venceuOjogo()
             }
         }
@@ -251,19 +252,9 @@ async function Jogar() {
 Jogar()
 
 function venceuOjogo(){
-    const imagem = document.getElementById('MapaId')
+    const imagem = document.getElementById('info')
     imagem.innerHTML = '<img id="ImagemPizza" src="imagens/imagemPizza.png" alt="Imagem Pizaz">'
-    const imagemPizza = document.getElementById('ImagemPizza')
-
-    Promise(resolve => {
-        setTimeout(() => {
-          elemento.classList.remove('animate');
-          resolve();
-        }, ms);
-      });
-
-    imagemPizza.style.left = 270 + 'px';
-    imagemPizza.style.top = 565 + 'px';
+    let imagemPizza = document.getElementById('ImagemPizza')
 }
 
 
